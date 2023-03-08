@@ -31,3 +31,8 @@ WHERE section = "Eye";
 SELECT * FROM beauty_products 
 WHERE rating >=3 
 ORDER BY rating desc;
+
+-- Returning the most expensive product 
+SELECT * FROM beauty_products 
+ORDER BY price desc
+LIMIT 1;
