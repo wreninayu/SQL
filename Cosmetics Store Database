@@ -24,7 +24,7 @@ SELECT * FROM beauty_products
 ORDER BY price desc;
 
 -- Returning the average price of items under the "Eye" category 
-SELECT * FROM beauty_products 
+SELECT AVG(price) "Avg Eye item price" FROM beauty_products
 WHERE section = "Eye";
 
 -- Returning items with a rating of at least 3 out of 5 stars 
