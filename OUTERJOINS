@@ -1,0 +1,35 @@
+CREATE TABLE customers (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    email TEXT);
+    
+INSERT INTO customers (name, email) VALUES ("Saoirse Ronan", "saoirse.ronan@gmail.com");
+INSERT INTO customers (name, email) VALUES ("Anya Taylor Joy", "atjoy@gmail.com");
+INSERT INTO customers (name, email) VALUES ("Samara Weaving", "samaraweaving@gmail.com");
+
+CREATE TABLE orders (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    customer_id INTEGER,
+    item TEXT,
+    price REAL);
+
+INSERT INTO orders (customer_id, item, price)
+    VALUES (1, "Lip Gloss", 1000.00);
+INSERT INTO orders (customer_id, item, price)
+    VALUES (2, "Eyeliner Pen", 40.00);
+INSERT INTO orders (customer_id, item, price)
+    VALUES (1, "Mascara", 1000000.00);
+
+-- Joined two different tables based on name, email, item, and price
+    SELECT c.name, c.email, o.item, o.price
+    FROM customers c 
+    LEFT OUTER JOIN orders o 
+    ON c.id = o.customer_id;
+
+-- Sorted based on most amount of money spent by each customer
+    SELECT c.name, c.email, sum(o.price) AS spent
+    FROM customers c
+    LEFT OUTER JOIN orders o
+    ON c.id = o.customer_id
+    GROUP BY c.name
+    ORDER BY spent desc;
